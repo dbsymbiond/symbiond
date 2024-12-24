@@ -1,0 +1,17 @@
+{
+  "name": "symbiond-backend",
+  "version": "0.1.0",
+  "description": "A portfolio project demonstrating a unique timekeeping system for a fictional world.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dylan Bowman dbowman@symbiond.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
