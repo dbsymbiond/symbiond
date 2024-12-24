@@ -50,7 +50,9 @@ The project consists of two main parts:
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
 
 1. Fork the repository.
+
 2. Create a new branch for your feature or bug fix.
+
   * For new features or major changes, branch from the `develop` branch: `git checkout -b my-new-feature origin/develop`
   * For small bug fixes or patches, branch from the `master` branch: `git checkout -b my-bug-fix origin/master` 
 3. Make your changes and commit them with clear commit messages.  Use the following prefixes to categorize your commits:
@@ -62,41 +64,41 @@ Contributions are welcome! If you'd like to contribute to this project, please f
   * `perf`: Performance improvements.
   * `test`:  Adding or modifying tests.
   * `chore`:  Maintenance tasks or build-related changes.
-
-  Example: `git commit -m "feat: Add new feature"` or `git commit -m "fix: Fix bug"`
+   Example: `git commit -m "feat: Add new feature"` or `git commit -m "fix: Fix bug"`
+   
 4. Push your branch to your forked repository: `git push origin my-new-feature` or `git push origin my-bug-fix`
+  **Important: Before you create a PR, do the following:**
+  * Update the `version` field in the relevant `package.json` file(s) according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+  * Update the `CHANGELOG.md` file with the details of your changes. Use the appropriate headings to categorize your changes:
+    ```markdown
+      ### Added
 
-**Important: Before you create a PR, do the following:**
-* Update the `version` field in the relevant `package.json` file(s) according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-* Update the `CHANGELOG.md` file with the details of your changes.
-  ```markdown
-  ### Added
+      - New feature or functionality.
 
-  - New feature or functionality.
+      ### Changed
 
-  ### Changed
+      - Modifications to existing features or functionality.
 
-  - Modifications to existing features or functionality
+      ### Deprecated
 
-  ### Deprecated
+      - Features or functionality that will be removed in future releases.
 
-  - Features or functionality that will be removed in future releases.
+      ### Removed
 
-  ### Removed
+      - Features or functionality that have been removed.
 
-  - Features or functionality that have been removed.
+      ### Fixed
 
-  ### Fixed
+      - Bug fixes or corrections.
 
-  - Bug fixes or corrections.
+      ### Security
 
-  ### Security
-
-  - Security-related changes or fixes.
-  ```
-* Make sure to run npm install to update relevant `package-lock.json` files(s)
+      - Security-related changes or fixes.
+    ```
+  * Make sure to run npm install to update relevant `package-lock.json` files(s)
 
 5. Open a pull request from your branch to the appropriate target branch (`develop` for features, `master` for patches).
+
 6. Provide a clear description of your changes in the pull request.
 
 **Note:** The repository admin will create and push the tag after merging the pull request.
