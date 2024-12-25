@@ -70,6 +70,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
     Example: `git commit -m "feat: Add new feature"` or `git commit -m "fix: Fix bug"`
    
 5. Push your branch to your forked repository: `git push origin my-new-feature` or `git push origin my-bug-fix`
+
   **Important: Before you create a PR, do the following:**
     * Update the `version` field in the relevant `package.json` file(s) according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     * Update the `CHANGELOG.md` file with the details of your changes. Use the appropriate headings to categorize your changes:
