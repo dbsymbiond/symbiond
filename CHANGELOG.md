@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-12-24
+
+### Added
+
+- Jest implementation for React Native and NodeJS of a comprehensive test suite that includes unit tests of the utils functions as well as snapshot tests for the client.
+
 ## [0.1.2] - 2024-12-24
 
 ### Changed

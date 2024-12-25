@@ -7,11 +7,13 @@ function Time() {
 
   useEffect(() => {
     const socket = io(`http://${process.env.EXPO_PUBLIC_SERVER_IP}:3000/`);
-    socket.on('timeUpdate', (data) => {
+    const timeUpdateListener = (data) => {
       setCurrentGameTime(data.time);
-    });
+    };
+    socket.on('timeUpdate', timeUpdateListener);
 
     return () => {
+      socket.off('timeUpdate', timeUpdateListener);
       socket.disconnect();
     };
   }, []);
