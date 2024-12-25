@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['babel-preset-expo'], // Only this preset is needed
+  presets: ['babel-preset-expo'],
   plugins: [
     [
       'module:react-native-dotenv',
