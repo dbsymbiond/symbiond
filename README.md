@@ -71,36 +71,36 @@ Contributions are welcome! If you'd like to contribute to this project, please f
    
 5. Push your branch to your forked repository: `git push origin my-new-feature` or `git push origin my-bug-fix`
   **Important: Before you create a PR, do the following:**
-  * Update the `version` field in the relevant `package.json` file(s) according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-  * Update the `CHANGELOG.md` file with the details of your changes. Use the appropriate headings to categorize your changes:
-    ```markdown
-      ### Added
+    * Update the `version` field in the relevant `package.json` file(s) according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+    * Update the `CHANGELOG.md` file with the details of your changes. Use the appropriate headings to categorize your changes:
+      ```markdown
+        ### Added
 
-      - New feature or functionality.
+        - New feature or functionality.
 
-      ### Changed
+        ### Changed
 
-      - Modifications to existing features or functionality.
+        - Modifications to existing features or functionality.
 
-      ### Deprecated
+        ### Deprecated
 
-      - Features or functionality that will be removed in future releases.
+        - Features or functionality that will be removed in future releases.
 
-      ### Removed
+        ### Removed
 
-      - Features or functionality that have been removed.
+        - Features or functionality that have been removed.
 
-      ### Fixed
+        ### Fixed
 
-      - Bug fixes or corrections.
+        - Bug fixes or corrections.
 
-      ### Security
+        ### Security
 
-      - Security-related changes or fixes.
-    ```
-  * Make sure to run npm install to update relevant `package-lock.json` files(s)
+        - Security-related changes or fixes.
+      ```
+    * Make sure to run npm install to update relevant `package-lock.json` files(s)
 
-  * Run npm test in both the frontend and backend folders to ensure all jest are passing.
+    * Run npm test in both the frontend and backend folders to ensure all jest are passing.
 
 6. Open a pull request from your branch to the appropriate target branch (`develop` for features, `master` for patches).
 
