@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-12-24
+
+### Added
+
+- Jest implementation for React Native and NodeJS of a comprehensive test suite that includes unit tests of the utils functions as well as snapshot tests for the client.
+- Initial game calendar implementation
+- Added react navigation with bottom tab
+- Performance enhancement on websocket and context implementation
+- A current date/time output in the calendar component shows the current game time from the server
+- Custom calendar component and contexts that handle the unique calendar of Symbiond.
+
 ## [0.1.2] - 2024-12-24
 
 ### Changed
