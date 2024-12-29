@@ -101,7 +101,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
       ```
     * Make sure to run npm install to update relevant `package-lock.json` files(s)
 
-    * Run npm test in both the frontend and backend folders to ensure all jest are passing.
+    * Run npm test in both the frontend and backend folders to ensure all jest are passing. The backend needs to be running in order to run the frontend tests.
 
 6. Open a pull request from your branch to the appropriate target branch (`develop` for features, `master` for patches).
 

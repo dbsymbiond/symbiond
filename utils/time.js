@@ -9,8 +9,9 @@ const getDate = () => {
   const now = new Date();
   const currentUtcMilliseconds = now.getTime();
   const millisecondsSinceEpoch = currentUtcMilliseconds - SYMBIOND_EPOCH_MILLISECONDS;
-  const totalSymbiondGameHours = Math.round(millisecondsSinceEpoch / 3600000 * 27);
+  const totalSymbiondGameHours = millisecondsSinceEpoch / 3600000 * SYMBIOND_HOURS_PER_EARTH_HOUR;
 
+  // get year
   let year = 1;
   let remainingHours = totalSymbiondGameHours;
 
@@ -29,11 +30,13 @@ const getDate = () => {
     monthDays.push(24);
   }
 
+  // get month and day
   let month = 1;
   let day = 1;
 
   for (let i = 0; i < monthDays.length; i++) {
     const hoursInMonth = monthDays[i] * SYMBIOND_HOURS_PER_EARTH_HOUR;
+
     if (remainingHours >= hoursInMonth) {
       remainingHours -= hoursInMonth;
       month++;
@@ -49,21 +52,12 @@ const getDate = () => {
 // get current game progression time
 const getTime = () => {
   const now = new Date();
-
-  // Get the current time in UTC milliseconds
-  const utcMilliseconds = now.getTime() + (now.getTimezoneOffset() * 60 * 1000);
-
-  // Calculate Symbiond milliseconds (27 Symbiond hours per Earth hour)
-  const symbiondMilliseconds = utcMilliseconds * SYMBIOND_HOURS_PER_EARTH_HOUR;
-
+  const utcMilliseconds = now.getTime();
+  const symbiondMilliseconds = (utcMilliseconds - SYMBIOND_EPOCH_MILLISECONDS) * SYMBIOND_HOURS_PER_EARTH_HOUR;
   const symbiondDate = new Date(symbiondMilliseconds);
-
-  let hours = Math.floor((symbiondMilliseconds / 1000 / 60 / 60) % 27);
-
-  const minutes = symbiondDate.getUTCMinutes();
-
+  const hours = Math.floor((symbiondMilliseconds / 1000 / 60 / 60) % 27);
+  const minutes = symbiondDate.getUTCMinutes()
   const seconds = symbiondDate.getUTCSeconds();
-
   const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
   return timeString;
