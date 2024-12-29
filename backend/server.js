@@ -6,23 +6,34 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-const { getTime } = require('../utils/time');
+const { getTime, getDate } = require('../utils/time');
+const { getGameCalendar } = require('../utils/calendar');
 
-let currentTime = getTime();
+let currentGameTime = getTime();
+let currentGameDate = getDate();
+let currentCalendar = getGameCalendar(currentGameDate.year, currentGameDate.month, currentGameDate.day);
 
-// Update game time every 37 milliseconds
 setInterval(() => {
-  let currentGameTime = getTime();
+  let newGameTime = getTime();
+  let newGameDate = getDate();
 
-  io.emit('timeUpdate', { time: currentGameTime });
+  io.emit('timeUpdate', { time: newGameTime });
+
+  if (newGameDate.day !== currentGameDate.day) {
+    currentGameDate = newGameDate;
+    currentCalendar = getGameCalendar(currentGameDate.year, currentGameDate.month, currentGameDate.day);
+
+    io.emit('dateUpdate', { date: currentGameDate });
+    io.emit('calendarUpdate', { calendar: currentCalendar, currentGameDate: currentGameDate });
+  }
 }, 37);
 
-// Handle client connections
 io.on('connection', (socket) => {
   console.log('New client connected');
 
-  // Send initial time and date to the new client
-  socket.emit('timeUpdate', { time: currentTime });
+  socket.emit('timeUpdate', { time: currentGameTime });
+  socket.emit('dateUpdate', { date: currentGameDate });
+  socket.emit('calendarUpdate', { calendar: currentCalendar, currentGameDate: currentGameDate });
 
   socket.on('disconnect', () => {
     console.log('Client disconnected');
