@@ -1,0 +1,14 @@
+{
+  "name": "shared",
+  "version": "0.3.0",
+  "description": "shared files for a portfolio project.",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dylan Bowman dbowman@symbiond.com"
+}

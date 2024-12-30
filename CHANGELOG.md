@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Shared folder containing constants that are in use by both applications and for future utilities they share as well.
+- Added locales folder with defenitions and strings currently in use by the application.
+- Locales Context to handle the 18n-js implementation on the client
+- Removed utils folder from the root directory and moved the server specific utilities to the backend and made a utils folder in the shared folder for future shared utils.
+- minor fix in app.json for version as well as updated README.
+
 ## [0.2.0] - 2024-12-24
 
 ### Added

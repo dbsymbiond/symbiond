@@ -1,11 +1,13 @@
-const MONTH_TOTAL_DAYS = [23, 21, 21, 22, 21, 21, 22, 21, 21, 22, 21, 21, 23, 21, 21];
-const SYMBIOND_EPOCH_MILLISECONDS = new Date('2000-01-01T00:00:00.000Z').getTime();
-const SYMBIOND_HOURS_PER_EARTH_HOUR = 27;
-const SYMBIOND_HOURS_PER_REGULAR_YEAR = 8694;
-const SYMBIOND_HOURS_PER_LEAP_YEAR = 9342;
+import {
+  DAYS_PER_MONTH,
+  SYMBIOND_EPOCH_MILLISECONDS,
+  SYMBIOND_HOURS_PER_EARTH_HOUR,
+  SYMBIOND_HOURS_PER_REGULAR_YEAR,
+  SYMBIOND_HOURS_PER_LEAP_YEAR
+} from "shared";
 
 // get current game progression date
-const getDate = () => {
+export const getDate = () => {
   const now = new Date();
   const currentUtcMilliseconds = now.getTime();
   const millisecondsSinceEpoch = currentUtcMilliseconds - SYMBIOND_EPOCH_MILLISECONDS;
@@ -24,10 +26,10 @@ const getDate = () => {
     year++;
   }
 
-  let monthDays = MONTH_TOTAL_DAYS;
+  let monthDays = DAYS_PER_MONTH;
 
-  if (year % 9 === 0) {
-    monthDays.push(24);
+  if (year % 9 !== 0) {
+    monthDays.pop();
   }
 
   // get month and day
@@ -50,7 +52,7 @@ const getDate = () => {
 };
 
 // get current game progression time
-const getTime = () => {
+export const getTime = () => {
   const now = new Date();
   const utcMilliseconds = now.getTime();
   const symbiondMilliseconds = (utcMilliseconds - SYMBIOND_EPOCH_MILLISECONDS) * SYMBIOND_HOURS_PER_EARTH_HOUR;
@@ -62,8 +64,3 @@ const getTime = () => {
 
   return timeString;
 };
-
-module.exports = {
-  getDate,
-  getTime
-}
