@@ -1,15 +1,8 @@
-const MONTH_NAMES = [
-  "Prima", "Duon", "Trine", "Quadra", "Penta", "Hexis", "Septa", "Octus",
-  "Ennea", "Deca", "Primadeca", "Duodeca", "Trideca", "Quadradeca", "Pentadeca",
-  "Nexus"
-];
-const daysPerMonth = [23, 21, 21, 22, 21, 21, 22, 21, 21, 22, 21, 21, 23, 21, 21, 24];
-const WEEKDAY_NAMES = [
-  "Primday", "Duday", "Triday", "Quaday", "Penday", "Hexday"
-];
-const startingWeekday = WEEKDAY_NAMES[4];
+import { MONTH_NAMES, WEEKDAY_NAMES, DAYS_PER_MONTH } from 'shared';
 
-const getGameCalendar = (year, month, day) => {
+export const getGameCalendar = (year, month, day) => {
+  const daysPerMonth = DAYS_PER_MONTH;
+  const startingWeekday = WEEKDAY_NAMES[4];
   // Regular Year is 15 months (excluding Nexus)
   // Leap Year is 16 months (including Nexus)
   // a leap year occurs every 9 years. 9,18,27,36,45...
@@ -53,7 +46,7 @@ const getGameCalendar = (year, month, day) => {
       days: []
     };
 
-    for (j = 1; j <= daysPerMonth[i]; j++) {
+    for (let j = 1; j <= daysPerMonth[i]; j++) {
       month.days.push({
         dayOfMonth: j,
         weekday: WEEKDAY_NAMES[(currentYearStartIndex + dayCount) % WEEKDAY_NAMES.length]
@@ -69,7 +62,3 @@ const getGameCalendar = (year, month, day) => {
     calendar: calendar
   };
 };
-
-module.exports = {
-  getGameCalendar
-}

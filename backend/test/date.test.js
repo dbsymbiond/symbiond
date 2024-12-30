@@ -1,4 +1,4 @@
-const { getDate } = require('../../utils/time');
+import { getDate } from "../utils/time";
 
 describe('Time Utils', () => {
   describe('getTime', () => {

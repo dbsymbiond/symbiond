@@ -72,7 +72,6 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 5. Push your branch to your forked repository: `git push origin my-new-feature` or `git push origin my-bug-fix`
 
   *Important: Before you create a PR, do the following:*
-    * Update the `version` field in the relevant `package.json` file(s) according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     * Update the `CHANGELOG.md` file with the details of your changes. Use the appropriate headings to categorize your changes:
       
       ```markdown
@@ -104,7 +103,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
   * Make sure to run npm install to update relevant `package-lock.json` files(s)
 
 
-    * Run npm test in both the frontend and backend folders to ensure all jest are passing. The backend needs to be running in order to run the frontend tests.
+  * Run npm test in both the frontend and backend folders to ensure all jest are passing. The backend needs to be running in order to run the frontend tests.
 
 
 6. Open a pull request from your branch to the appropriate target branch (`develop` for features, `master` for patches).

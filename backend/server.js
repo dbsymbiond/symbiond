@@ -1,17 +1,21 @@
-const express = require('express');
-const http = require('http');
-const socketIO = require('socket.io');
+// server.js
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+import { getTime, getDate } from './utils/time.js';
+import { getGameCalendar } from './utils/calendar.js';
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
-
-const { getTime, getDate } = require('../utils/time');
-const { getGameCalendar } = require('../utils/calendar');
+const io = new Server(server);
 
 let currentGameTime = getTime();
 let currentGameDate = getDate();
-let currentCalendar = getGameCalendar(currentGameDate.year, currentGameDate.month, currentGameDate.day);
+let currentCalendar = getGameCalendar(
+  currentGameDate.year,
+  currentGameDate.month,
+  currentGameDate.day
+);
 
 setInterval(() => {
   let newGameTime = getTime();
@@ -21,10 +25,17 @@ setInterval(() => {
 
   if (newGameDate.day !== currentGameDate.day) {
     currentGameDate = newGameDate;
-    currentCalendar = getGameCalendar(currentGameDate.year, currentGameDate.month, currentGameDate.day);
+    currentCalendar = getGameCalendar(
+      currentGameDate.year,
+      currentGameDate.month,
+      currentGameDate.day
+    );
 
     io.emit('dateUpdate', { date: currentGameDate });
-    io.emit('calendarUpdate', { calendar: currentCalendar, currentGameDate: currentGameDate });
+    io.emit('calendarUpdate', {
+      calendar: currentCalendar,
+      currentGameDate: currentGameDate,
+    });
   }
 }, 37);
 
@@ -33,7 +44,10 @@ io.on('connection', (socket) => {
 
   socket.emit('timeUpdate', { time: currentGameTime });
   socket.emit('dateUpdate', { date: currentGameDate });
-  socket.emit('calendarUpdate', { calendar: currentCalendar, currentGameDate: currentGameDate });
+  socket.emit('calendarUpdate', {
+    calendar: currentCalendar,
+    currentGameDate: currentGameDate,
+  });
 
   socket.on('disconnect', () => {
     console.log('Client disconnected');
