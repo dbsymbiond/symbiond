@@ -11,25 +11,21 @@ export const getDate = () => {
   const now = new Date();
   const currentUtcMilliseconds = now.getTime();
   const millisecondsSinceEpoch = currentUtcMilliseconds - SYMBIOND_EPOCH_MILLISECONDS;
-  const totalSymbiondGameHours = millisecondsSinceEpoch / 3600000 * SYMBIOND_HOURS_PER_EARTH_HOUR;
+  const totalSymbiondGameHours = millisecondsSinceEpoch * SYMBIOND_HOURS_PER_EARTH_HOUR / 3600000;
 
   // get year
   let year = 1;
   let remainingHours = totalSymbiondGameHours;
 
-  while (remainingHours >= SYMBIOND_HOURS_PER_REGULAR_YEAR) {
-    if (year % 9 === 0) {
-      remainingHours -= SYMBIOND_HOURS_PER_LEAP_YEAR;
-    } else {
-      remainingHours -= SYMBIOND_HOURS_PER_REGULAR_YEAR;
-    }
+  while (remainingHours >= (year % 9 === 0 ? SYMBIOND_HOURS_PER_LEAP_YEAR : SYMBIOND_HOURS_PER_REGULAR_YEAR)) {
+    remainingHours -= (year % 9 === 0 ? SYMBIOND_HOURS_PER_LEAP_YEAR : SYMBIOND_HOURS_PER_REGULAR_YEAR);
     year++;
   }
 
   let monthDays = DAYS_PER_MONTH;
 
-  if (year % 9 !== 0) {
-    monthDays.pop();
+  if (year % 9 === 0) {
+    monthDays.push(24);
   }
 
   // get month and day

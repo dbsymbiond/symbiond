@@ -11,6 +11,7 @@ const io = new Server(server);
 
 let currentGameTime = getTime();
 let currentGameDate = getDate();
+
 let currentCalendar = getGameCalendar(
   currentGameDate.year,
   currentGameDate.month,
