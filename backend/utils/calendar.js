@@ -1,12 +1,15 @@
 import { MONTH_NAMES, WEEKDAY_NAMES, DAYS_PER_MONTH } from 'shared';
 
 export const getGameCalendar = (year, month, day) => {
-  const daysPerMonth = DAYS_PER_MONTH;
+  let daysPerMonth = DAYS_PER_MONTH;
   const startingWeekday = WEEKDAY_NAMES[4];
   // Regular Year is 15 months (excluding Nexus)
   // Leap Year is 16 months (including Nexus)
   // a leap year occurs every 9 years. 9,18,27,36,45...
   const isLeapYear = year % 9 === 0;
+  if (isLeapYear) {
+    daysPerMonth.push(24);
+  }
   // find the days passed in the current year
   let currentMonthIndex = month - 1;
   let daysPassedInCurrentYear = 0;

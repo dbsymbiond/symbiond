@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- an error was occuring in the calculation for date/time and fixed that as well as tested. 
+
 ### Added
 
 - Shared folder containing constants that are in use by both applications and for future utilities they share as well.
