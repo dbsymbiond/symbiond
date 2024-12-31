@@ -1,4 +1,4 @@
-import { MONTH_NAMES } from "shared";
+import { MONTH_NAMES } from "./constants/calendar.js";
 
 const getOrdinalSuffix = (day) => {
   if (day % 10 === 1 && day % 100 !== 11) return `${day}st`;

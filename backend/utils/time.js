@@ -1,10 +1,13 @@
 import {
-  DAYS_PER_MONTH,
   SYMBIOND_EPOCH_MILLISECONDS,
   SYMBIOND_HOURS_PER_EARTH_HOUR,
   SYMBIOND_HOURS_PER_REGULAR_YEAR,
   SYMBIOND_HOURS_PER_LEAP_YEAR
-} from "shared";
+} from "../utils/constants/time.js";
+
+import {
+  DAYS_PER_MONTH
+} from "../utils/constants/calendar.js";
 
 // get current game progression date
 export const getDate = () => {

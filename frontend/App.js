@@ -9,6 +9,7 @@ import { LocalizationProvider } from './context/LocalizationContext';
 
 // components
 import Navigation from './components/Navigation/Navigation';
+import Calendar from './components/Calendar/Calendar';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <GameDateProvider>
           <GameTimeProvider>
             <GameCalendarProvider>
-              <Navigation />
+              <Calendar />
             </GameCalendarProvider>
           </GameTimeProvider>
         </GameDateProvider>
