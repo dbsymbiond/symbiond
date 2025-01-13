@@ -1,5 +1,4 @@
-import { MONTH_NAMES, WEEKDAY_NAMES, DAYS_PER_MONTH } from 'shared';
-
+import { MONTH_NAMES, WEEKDAY_NAMES, DAYS_PER_MONTH } from '../utils/constants/calendar.js';
 export const getGameCalendar = (year, month, day) => {
   let daysPerMonth = DAYS_PER_MONTH;
   const startingWeekday = WEEKDAY_NAMES[4];

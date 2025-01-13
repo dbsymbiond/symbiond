@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
-
-// screens
 import CalendarScreen from '../../screens/CalendarScreen';
 import { useLocalization } from '../../context/LocalizationContext';
 
+const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 const CalendarScreenOptions = () => {
@@ -38,6 +38,14 @@ const CalendarScreenOptions = () => {
   };
 };
 
+const UnauthenticatedStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Screen component={TabNavigator} name="Home" />
+    </Stack.Navigator>
+  );
+}
+
 const TabNavigator = () => {
   return (
     <BottomTabs.Navigator>
@@ -53,7 +61,7 @@ const TabNavigator = () => {
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <UnauthenticatedStack />
     </NavigationContainer>
   );
 }

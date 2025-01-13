@@ -1,0 +1,26 @@
+services:
+  pg-user:
+    image: postgres:17.2
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/backend.env
+  symbiond-backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - logs:/app/logs
+      # bind mount
+      - ./backend:/app
+      # anonymous volumes
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - pg-user
+volumes:
+  data:
+  logs:

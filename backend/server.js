@@ -1,6 +1,7 @@
-// server.js
 import express from 'express';
 import http from 'http';
+import pg from 'pg';
+const { Pool } = pg;
 import { Server } from 'socket.io';
 import { getTime, getDate } from './utils/time.js';
 import { getGameCalendar } from './utils/calendar.js';
@@ -8,6 +9,14 @@ import { getGameCalendar } from './utils/calendar.js';
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
+
+const pool = new Pool({
+  user: process.env.POSTGRES_USER,
+  host: 'host.docker.internal',
+  database: process.env.POSTGRES_DB,
+  password: process.env.POSTGRES_PASSWORD,
+  port: 5432,
+});
 
 let currentGameTime = getTime();
 let currentGameDate = getDate();
@@ -40,8 +49,12 @@ setInterval(() => {
   }
 }, 37);
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   console.log('New client connected');
+  // test the db client connection
+  const client = await pool.connect();
+  const result = await client.query('SELECT NOW()');
+  console.log('current connection time: ', result.rows[0].now);
 
   socket.emit('timeUpdate', { time: currentGameTime });
   socket.emit('dateUpdate', { date: currentGameDate });
@@ -52,6 +65,7 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('Client disconnected');
+    client.release();
   });
 });
 

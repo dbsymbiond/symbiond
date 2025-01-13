@@ -7,17 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-
-- an error was occuring in the calculation for date/time and fixed that as well as tested. 
+## [0.3.0] - 2025-1-13
 
 ### Added
 
-- Shared folder containing constants that are in use by both applications and for future utilities they share as well.
+- Dockerized the backend application and setup a simple postgres database for future development as well as env folder for Docker to hold the database information.
 - Added locales folder with defenitions and strings currently in use by the application.
 - Locales Context to handle the 18n-js implementation on the client
-- Removed utils folder from the root directory and moved the server specific utilities to the backend and made a utils folder in the shared folder for future shared utils.
+- Removed utils folder from the root directory and moved the server specific utilities to the backend.
 - minor fix in app.json for version as well as updated README.
+
+### Fixed
+
+- an error was occuring in the calculation for date/time and fixed that as well as tested. 
 
 ## [0.2.0] - 2024-12-24
 

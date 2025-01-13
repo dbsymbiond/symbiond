@@ -12,6 +12,7 @@ web-build/
 .DS_Store
 Thumbs.db
 .env
+env
 
 # Logs and temporary files
 *.log
