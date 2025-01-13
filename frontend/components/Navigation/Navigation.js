@@ -1,15 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 import EvilIcons from '@expo/vector-icons/EvilIcons';
-
-// screens
 import CalendarScreen from '../../screens/CalendarScreen';
 import { useLocalization } from '../../context/LocalizationContext';
-
-// components
-import AuthForm from '../Authentication/AuthForm';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -44,23 +38,10 @@ const CalendarScreenOptions = () => {
   };
 };
 
-const AuthenticatedStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen component={TabNavigator} name="Home" />
-    </Stack.Navigator>
-  )
-}
-
 const UnauthenticatedStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen options={{ headerShown: false }} name="Login">
-        {(props) => <AuthForm {...props} isLogin={true} />}
-      </Stack.Screen>
-      <Stack.Screen options={{ headerShown: false }} name="Signup">
-        {(props) => <AuthForm {...props} isLogin={false} />}
-      </Stack.Screen>
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Screen component={TabNavigator} name="Home" />
     </Stack.Navigator>
   );
 }

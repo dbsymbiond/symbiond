@@ -1,6 +1,4 @@
 import { StyleSheet, View } from "react-native";
-
-// components
 import DateTime from "../DateTime";
 import CalendarMonths from "./CalendarMonths";
 

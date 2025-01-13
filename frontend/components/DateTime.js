@@ -1,10 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-
-// context
 import { useGameTime } from "../context/GameTimeContext";
 import { useGameDate } from "../context/GameDateContext";
-
-// utils
 import { getFormattedDateTime } from "../utils/datetime";
 import { useLocalization } from "../context/LocalizationContext";
 

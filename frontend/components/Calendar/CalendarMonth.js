@@ -1,6 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
 import { MONTH_NAMES, WEEKDAY_NAMES } from '../../utils/constants/calendar';
-// context
 import { useGameDate } from "../../context/GameDateContext";
 
 const CalendarMonth = ({ month, index }) => {
