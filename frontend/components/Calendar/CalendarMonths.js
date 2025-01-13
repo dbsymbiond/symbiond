@@ -1,11 +1,7 @@
 import { useRef } from "react";
 import { StyleSheet } from "react-native";
 import PagerView from "react-native-pager-view";
-
-// components
 import CalendarMonth from "./CalendarMonth";
-
-// context
 import { useGameCalendar } from "../../context/GameCalendarContext";
 import { useGameDate } from "../../context/GameDateContext";
 

@@ -1,36 +1,31 @@
 import { StyleSheet, Text, View } from "react-native";
-
-// context
 import { useGameTime } from "../context/GameTimeContext";
 import { useGameDate } from "../context/GameDateContext";
-
-// utils
 import { getFormattedDateTime } from "../utils/datetime";
+import { useLocalization } from "../context/LocalizationContext";
 
 
 function DateTime() {
+  const { i18n } = useLocalization();
   const { getCurrentDate } = useGameDate();
   const { getCurrentTime } = useGameTime();
   const currentTime = getCurrentTime();
   const currentDate = getCurrentDate();
-  let formattedDateTime = '';
 
-  if (currentDate && currentTime) {
-    formattedDateTime = getFormattedDateTime(currentDate, currentTime);
-  }
+  const formattedDateTime = (currentDate && currentTime)
+    ? getFormattedDateTime(currentDate, currentTime, i18n)
+    : { date: '', time: '' };
 
-  if (formattedDateTime) {
-    return (
-      <View style={styles.dateTimeContainer}>
-        <Text testID="game-time" style={styles.dateText}>
-          {formattedDateTime && formattedDateTime.date}
-        </Text>
-        <Text testID="game-date" style={styles.timeText}>
-          {formattedDateTime && formattedDateTime.time}
-        </Text>
-      </View>
-    )
-  }
+  return (
+    <View style={styles.dateTimeContainer}>
+      <Text testID="game-date" style={styles.dateText}>
+        {formattedDateTime.date}
+      </Text>
+      <Text testID="game-time" style={styles.timeText}>
+        {formattedDateTime.time}
+      </Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

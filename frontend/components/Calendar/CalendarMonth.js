@@ -1,41 +1,30 @@
 import { StyleSheet, View, Text } from "react-native";
-
-// context
+import { MONTH_NAMES, WEEKDAY_NAMES } from '../../utils/constants/calendar';
 import { useGameDate } from "../../context/GameDateContext";
-
-const MONTH_NAMES = [
-  "Prima", "Duon", "Trine", "Quadra", "Penta", "Hexis", "Septa", "Octus",
-  "Ennea", "Deca", "Primadeca", "Duodeca", "Trideca", "Quadradeca", "Pentadeca",
-  "Nexus"
-];
-const WEEKDAY_NAMES = [
-  "Primday", "Duday", "Triday", "Quaday", "Penday", "Hexday"
-];
-
-// fill in the empty cells before day 1 of the current month
-const getEmptyCells = (month) => {
-  switch (month.days[0].weekday) {
-    case 'Primday':
-      return 0;
-    case 'Duday':
-      return 1;
-    case 'Triday':
-      return 2;
-    case 'Quaday':
-      return 3;
-    case 'Penday':
-      return 4;
-    case 'Hexday':
-      return 5;
-    default:
-      return 0;
-  }
-};
 
 const CalendarMonth = ({ month, index }) => {
   const { getCurrentDate } = useGameDate();
   const currentDate = getCurrentDate();
   const weekdayHeaders = WEEKDAY_NAMES;
+
+  const getEmptyCells = (month) => {
+    switch (month.days[0].weekday) {
+      case 'Primday':
+        return 0;
+      case 'Duday':
+        return 1;
+      case 'Triday':
+        return 2;
+      case 'Quaday':
+        return 3;
+      case 'Penday':
+        return 4;
+      case 'Hexday':
+        return 5;
+      default:
+        return 0;
+    }
+  };
 
   return (
     <View style={styles.page} key={index}>

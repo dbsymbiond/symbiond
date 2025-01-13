@@ -1,8 +1,4 @@
-const MONTH_NAMES = [
-  "Prima", "Duon", "Trine", "Quadra", "Penta", "Hexis", "Septa", "Octus",
-  "Ennea", "Deca", "Primadeca", "Duodeca", "Trideca", "Quadradeca", "Pentadeca",
-  "Nexus"
-];
+import { MONTH_NAMES } from "./constants/calendar.js";
 
 const getOrdinalSuffix = (day) => {
   if (day % 10 === 1 && day % 100 !== 11) return `${day}st`;
@@ -11,9 +7,15 @@ const getOrdinalSuffix = (day) => {
   return `${day}th`;
 };
 
-export const getFormattedDateTime = (date, time) => {
+export const getFormattedDateTime = (date, time, i18n) => {
   return {
-    date: `${MONTH_NAMES[date.month - 1]} ${getOrdinalSuffix(date.day)}, ${date.year} A.F.`,
-    time: `${time}`
+    date: i18n.t('time.formattedDate', {
+      month: MONTH_NAMES[date.month - 1],
+      day: getOrdinalSuffix(date.day),
+      year: date.year
+    }),
+    time: i18n.t('time.formattedTime', {
+      time: time
+    })
   };
 }

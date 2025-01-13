@@ -1,30 +1,31 @@
-const MONTH_TOTAL_DAYS = [23, 21, 21, 22, 21, 21, 22, 21, 21, 22, 21, 21, 23, 21, 21];
-const SYMBIOND_EPOCH_MILLISECONDS = new Date('2000-01-01T00:00:00.000Z').getTime();
-const SYMBIOND_HOURS_PER_EARTH_HOUR = 27;
-const SYMBIOND_HOURS_PER_REGULAR_YEAR = 8694;
-const SYMBIOND_HOURS_PER_LEAP_YEAR = 9342;
+import {
+  SYMBIOND_EPOCH_MILLISECONDS,
+  SYMBIOND_HOURS_PER_EARTH_HOUR,
+  SYMBIOND_HOURS_PER_REGULAR_YEAR,
+  SYMBIOND_HOURS_PER_LEAP_YEAR
+} from "../utils/constants/time.js";
+
+import {
+  DAYS_PER_MONTH
+} from "../utils/constants/calendar.js";
 
 // get current game progression date
-const getDate = () => {
+export const getDate = () => {
   const now = new Date();
   const currentUtcMilliseconds = now.getTime();
   const millisecondsSinceEpoch = currentUtcMilliseconds - SYMBIOND_EPOCH_MILLISECONDS;
-  const totalSymbiondGameHours = millisecondsSinceEpoch / 3600000 * SYMBIOND_HOURS_PER_EARTH_HOUR;
+  const totalSymbiondGameHours = millisecondsSinceEpoch * SYMBIOND_HOURS_PER_EARTH_HOUR / 3600000;
 
   // get year
   let year = 1;
   let remainingHours = totalSymbiondGameHours;
 
-  while (remainingHours >= SYMBIOND_HOURS_PER_REGULAR_YEAR) {
-    if (year % 9 === 0) {
-      remainingHours -= SYMBIOND_HOURS_PER_LEAP_YEAR;
-    } else {
-      remainingHours -= SYMBIOND_HOURS_PER_REGULAR_YEAR;
-    }
+  while (remainingHours >= (year % 9 === 0 ? SYMBIOND_HOURS_PER_LEAP_YEAR : SYMBIOND_HOURS_PER_REGULAR_YEAR)) {
+    remainingHours -= (year % 9 === 0 ? SYMBIOND_HOURS_PER_LEAP_YEAR : SYMBIOND_HOURS_PER_REGULAR_YEAR);
     year++;
   }
 
-  let monthDays = MONTH_TOTAL_DAYS;
+  let monthDays = DAYS_PER_MONTH;
 
   if (year % 9 === 0) {
     monthDays.push(24);
@@ -50,7 +51,7 @@ const getDate = () => {
 };
 
 // get current game progression time
-const getTime = () => {
+export const getTime = () => {
   const now = new Date();
   const utcMilliseconds = now.getTime();
   const symbiondMilliseconds = (utcMilliseconds - SYMBIOND_EPOCH_MILLISECONDS) * SYMBIOND_HOURS_PER_EARTH_HOUR;
@@ -62,8 +63,3 @@ const getTime = () => {
 
   return timeString;
 };
-
-module.exports = {
-  getDate,
-  getTime
-}
