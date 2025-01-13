@@ -10,12 +10,9 @@
   cd symbiond/frontend
   npm install
   ```
-  ```bash
-  cd ../backend
-  npm install
-  ```
-  **Important Note:**
-  The `admin` folder, which contains the code for the admin application, is not included in this public repository and is managed separately. This folder is listed in the `.gitignore` file to exclude it from version control.
+  **Important Notes:**
+  * The `admin` folder, which contains the code for the admin application, is not included in this public repository and is managed separately. This folder is listed in the `.gitignore` file to exclude it from version control.
+  * The project requires use of Docker and `docker-compose` to build and run the backend server and are required development dependencies.
 
 3. **Configure environment variables:**
   * Create a `.env` file in the `frontend` directory.
@@ -23,22 +20,40 @@
   ```
   EXPO_PUBLIC_SERVER_IP=your-server-ipv4-address
   ```
+  * Create a `env` folder in the root directory. Create a file named `backend.env` in that folder. You must have a PostgreSQL server running locally. Add the following lines, replacing `user`, `password`, and `db` with the relevant username, password, and database name of your PostgreSQL database.
+  ```
+  POSTGRES_USER=user
+  POSTGRES_PASSWORD=password
+  POSTGRES_DB=db
+  ```
 
 ## Running the App
 
 1.  **Start the backend server:**
+  * From the `root` directory of the project run:
   ```bash
-  cd symbiond/backend
-  npm start
+  docker-compose up -d --build
   ```
 
 2.  **Start the frontend app:**
+  * From the `frontend` directory of the project run:
   ```bash
-  cd symbiond/frontend
   npx expo start
   ```
   * Scan the QR code with your iOS or Android device to run the app in the Expo Go app.
   * Make sure your device is connected to the same Wi-Fi network as your development machine.
+    
+3.  **Getting Backend Server Logs**
+  * From the `root` directory of the project run:
+  ```bash
+  docker logs symbiond-pg-user-1
+  ```
+
+4.  **Shutting Backend Server Down**
+  * From the `root` directory of the project run:
+  ```bash
+  docker-compose down
+  ```
 
 ## Contributing
 
@@ -62,6 +77,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
     * `perf`: Performance improvements.
     * `test`:  Adding or modifying tests.
     * `chore`:  Maintenance tasks or build-related changes.
+  
     Example: `git commit -m "feat: Add new feature"` or `git commit -m "fix: Fix bug"`
    
 5. Push your branch to your forked repository: `git push origin my-new-feature` or `git push origin my-bug-fix`
