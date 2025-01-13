@@ -46,7 +46,7 @@
 3.  **Getting Backend Server Logs**
   * From the `root` directory of the project run:
   ```bash
-  docker logs symbiond-pg-user-1
+  docker logs symbiond-symbiond-backend-1
   ```
 
 4.  **Shutting Backend Server Down**
