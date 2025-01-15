@@ -12,8 +12,12 @@ export const LocalizationProvider = ({ children }) => {
   const initialLocale = locales[0]?.languageCode;
   const isRTL = locales[0]?.textDirection === 'rtl';
   const [i18n, setI18n] = useState(new I18n({
-    en: { common: en.common, time: en.time, calendar: en.calendar },
-    // ... other languages
+    en: {
+      common: en.common,
+      time: en.time,
+      calendar: en.calendar,
+      map: en.map
+    }
   }));
 
   const [currentLocale, setCurrentLocale] = useState(initialLocale);

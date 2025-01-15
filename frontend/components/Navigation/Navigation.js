@@ -2,16 +2,28 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
+import Foundation from '@expo/vector-icons/Foundation';
 import CalendarScreen from '../../screens/CalendarScreen';
 import { useLocalization } from '../../context/LocalizationContext';
+import MapScreen from '../../screens/MapScreen';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
-const CalendarScreenOptions = () => {
+const ScreenOptions = (type) => {
   const { i18n } = useLocalization();
-  const tabBarString = i18n.t('calendar.tabTitle');
-  const headerString = i18n.t('calendar.headerTitle');
+  let tabBarString = "";
+  let headerString = "";
+
+  switch (type) {
+    case 'calendar':
+      tabBarString = i18n.t('calendar.tabTitle');
+      headerString = i18n.t('calendar.headerTitle');
+      break;
+    case 'map':
+      tabBarString = i18n.t('map.tabTitle');
+      headerString = i18n.t('map.headerTitle');
+  }
 
   return {
     tabBarActiveTintColor: '#6DA34D',
@@ -32,9 +44,14 @@ const CalendarScreenOptions = () => {
       color: '#FFFFFF'
     },
     headerTintColor: '#FFFFFF',
-    tabBarIcon: ({ color, size }) => (
-      <EvilIcons name='calendar' size={size} color={color} />
-    )
+    tabBarIcon: ({ color, size }) => {
+      switch (type) {
+        case 'calendar':
+          return <EvilIcons name='calendar' size={size} color={color} />
+        case 'map':
+          return <Foundation name='map' size={size} color={color} />
+      }
+    }
   };
 };
 
@@ -52,7 +69,12 @@ const TabNavigator = () => {
       <BottomTabs.Screen
         name="Calendar"
         component={CalendarScreen}
-        options={CalendarScreenOptions()}
+        options={ScreenOptions('calendar')}
+      />
+      <BottomTabs.Screen
+        name="Map"
+        component={MapScreen}
+        options={ScreenOptions('map')}
       />
     </BottomTabs.Navigator>
   );
