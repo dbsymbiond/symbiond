@@ -3,7 +3,7 @@ import Calendar from "../components/Calendar/Calendar";
 
 const CalendarScreen = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: 'pink' }}>
+    <View style={{ flex: 1 }}>
       <Calendar />
     </View>
   );

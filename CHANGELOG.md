@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-1-15
+
+### Added
+
+- Added a new map screen with a link in the bottom tabs navigator.
+- The map is a 16x16 grid that is served up from the backend and shown in a webview. 
+- 2 initial layers for the map include states, and physical.
+
 ## [0.3.0] - 2025-1-13
 
 ### Added
