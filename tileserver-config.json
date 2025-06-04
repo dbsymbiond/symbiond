@@ -1,0 +1,12 @@
+{
+  "options": {},
+  "sources": {
+    "mapbox": {
+      "type": "vector",
+      "tiles": [
+        "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/{z}/{x}/{y}.pbf"
+      ],
+      "attribution": "<a href=\"https://www.mapbox.com/about/maps/\" target=\"_blank\">&copy; Mapbox</a> <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">&copy; OpenStreetMap contributors</a>"
+    }
+  }
+}

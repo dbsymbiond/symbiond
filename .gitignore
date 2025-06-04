@@ -1,26 +1,50 @@
-# Node.js
+# Node.js common (apply to all Node.js projects/services)
 node_modules/
-npm-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+.npm/
 
-# Expo (React Native)
-.expo/
+# Build artifacts (for both frontend and backend)
 dist/
-web-build/
+build/
+web-build/ # If used by any project (e.g., frontend)
 
-# Other common files
-.DS_Store
-Thumbs.db
+# Docker specific (crucial for local development, not committed)
+.dockerignore
+**/*.flag
+pgdata/
+
+# Environment variables (sensitive info, never commit)
 .env
 env
 
 # Logs and temporary files
 *.log
 tmp/
+logs/
 
-# Editor and IDE files
+# Operating System and IDE files (general to any project)
+.DS_Store
+Thumbs.db
 .idea/
 .vscode/
+*.swp # Vim swap files
+*.bak # Backup files
 
-# jest
+# Test artifacts
+coverage/
 __snapshots__/
+
+# Certificates (if used for local HTTPS development)
+*.pem
+*.key
+*.crt
+
+# Executables or compiled binaries (if any services compile to native)
+*.exe
+*.dll
+*.so
+*.o
+
+# Expo (React Native)
+.expo/
