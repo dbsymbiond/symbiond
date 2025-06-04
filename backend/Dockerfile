@@ -1,24 +1,23 @@
 FROM node:20-alpine
 
-# Install PostgreSQL client tools
-# These tools include pg_isready, psql, etc., which are necessary for your db.sh script.
-RUN apk add --no-cache postgresql-client
+# Install PostgreSQL client tools and dos2unix utility
+# dos2unix is used to convert Windows line endings to Unix line endings
+RUN apk add --no-cache postgresql-client dos2unix
 
 WORKDIR /app
 
-COPY /backend/package*.json ./
-
+# Copy package*.json and install dependencies FIRST to leverage Docker cache
+COPY backend/package*.json ./
 RUN npm install
 
-# Copy the db.sh script and make it executable
+# Copy the db.sh script to its destination
 COPY backend/db.sh /usr/local/bin/db.sh
-RUN chmod +x /usr/local/bin/db.sh
+# Convert line endings and then make it executable
+RUN dos2unix /usr/local/bin/db.sh && chmod +x /usr/local/bin/db.sh
 
-# This line copies your entire backend folder into /app/backend/
-# You might want to adjust this if your scripts/assets aren't directly under backend/
-# For example, if you want everything directly in /app: COPY /backend /app/
-# But given your current structure, this might be intentional.
-COPY /backend /app/backend/
+# Copy the rest of your backend application code
+# Ensure this copies all necessary files for your server.js, scripts, assets, etc.
+COPY backend /app/backend/
 
 EXPOSE 3000
 

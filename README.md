@@ -11,7 +11,7 @@ cd symbiond
 
 ```bash
 cd frontend
-npm install
+npm install --legacy-peer-deps
 cd ..
 ```
 
@@ -23,7 +23,7 @@ cd ..
 3. **Configure environment variables:**
 
 - Create a `.env` file in the `frontend` directory.
-- Add the following line, replacing `your-server-ipv4-address` with the IPv4 address of your machine where the expo server is running:
+- Add the following line, replacing `your-server-ipv4-address` with the IPv4 address of your local machine where the backend server will be running:
 
 ```
 EXPO_PUBLIC_SERVER_IP=your-server-ipv4-address
