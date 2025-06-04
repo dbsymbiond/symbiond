@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-6-4
+
+- Overhaul to the map grid logic. Added a tile server and initial parsing of geojson.
+- Added postgis database
+- Removed Calendar screen for now until later enhancement.
+
 ## [0.4.0] - 2025-1-15
 
 ### Added
 
 - Added a new map screen with a link in the bottom tabs navigator.
-- The map is a 16x16 grid that is served up from the backend and shown in a webview. 
+- The map is a 16x16 grid that is served up from the backend and shown in a webview.
 - 2 initial layers for the map include states, and physical.
 
 ## [0.3.0] - 2025-1-13
@@ -27,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- an error was occuring in the calculation for date/time and fixed that as well as tested. 
+- an error was occuring in the calculation for date/time and fixed that as well as tested.
 
 ## [0.2.0] - 2024-12-24
 

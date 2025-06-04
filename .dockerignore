@@ -9,3 +9,6 @@ Thumbs.db
 .env
 env/
 frontend/
+pgdata/
+**/*.flag
+tileserver-config.json

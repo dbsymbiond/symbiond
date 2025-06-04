@@ -1,26 +1,40 @@
+version: "3.8"
 services:
   pg-user:
-    image: postgres:17.2
+    image: postgis/postgis:17-3.4
     volumes:
-      - data:/data/db
+      - ./pgdata:/var/lib/postgresql/data
+      - ./backend/db-init:/docker-entrypoint-initdb.d
     env_file:
       - ./env/backend.env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   symbiond-backend:
     build:
       context: .
       dockerfile: ./backend/Dockerfile
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
-      - logs:/app/logs
-      # bind mount
       - ./backend:/app
-      # anonymous volumes
       - /app/node_modules
     env_file:
       - ./env/backend.env
+    environment:
+      - NODE_ENV=development
     depends_on:
-      - pg-user
-volumes:
-  data:
-  logs:
+      pg-user:
+        condition: service_healthy
+  tileserver:
+    image: maptiler/tileserver-gl:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./tileserver-config.json:/data/config.json
+    environment:
+      TILESERVER_CONFIG_FILE: /data/config.json
+    depends_on:
+      - symbiond-backend
