@@ -16,7 +16,7 @@ const MapScreen = () => {
       <WebView
         style={styles.webView}
         originWhitelist={["*"]}
-        source={{ uri: "http://192.168.1.76:3000/map" }}
+        source={{ uri: `http://${process.env.EXPO_PUBLIC_SERVER_IP}:3000/map` }}
         javaScriptEnabled={true}
         domStorageEnabled={true}
       />
