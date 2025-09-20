@@ -7,12 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2025-9-20
+
+### Fixed
+
+- Removed react native as the frontend
+- Added react as the new frontend
+- updated backend to remove /map route as this is handled in the frontend now
+- updated readme
+
 ## [0.5.2] - 2025-6-4
+
+### Fixed
 
 - Fixed readme.
 - Fixed issue with the Dockerfile not finding the db.sh file.
 
 ## [0.5.0] - 2025-6-4
+
+### Changed
 
 - Overhaul to the map grid logic. Added a tile server and initial parsing of geojson.
 - Added postgis database

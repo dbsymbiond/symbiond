@@ -11,7 +11,7 @@ cd symbiond
 
 ```bash
 cd frontend
-npm install --legacy-peer-deps
+npm install
 cd ..
 ```
 
@@ -23,10 +23,9 @@ cd ..
 3. **Configure environment variables:**
 
 - Create a `.env` file in the `frontend` directory.
-- Add the following line, replacing `your-server-ipv4-address` with the IPv4 address of your local machine where the backend server will be running:
 
 ```
-EXPO_PUBLIC_SERVER_IP=your-server-ipv4-address
+PORT=3001
 ```
 
 - Create a `env` folder in the root directory. Create a file named `backend.env` in that folder. Add the following lines, replacing `user`, `password`, and `db` with the your desired PostgreSQL username, and password and name the database `symbiond`
@@ -52,11 +51,8 @@ docker-compose up -d --build
 - From the `frontend` directory of the project run:
 
 ```bash
-npx expo start
+npm start
 ```
-
-- Scan the QR code with your iOS or Android device to run the app in the Expo Go app.
-- Make sure your device is connected to the same Wi-Fi network as your development machine.
 
 3.  **Getting Backend Server Logs**
 
@@ -78,6 +74,7 @@ docker-compose down
 
 - Stop backend services using `docker compose down`
 - Manually delete the pgdata folder from the project root.
+- Delete the file in backend called `parsed_geojson.flag`
 - Start backend services `docker compose up -d --build`
 
 ## Contributing
