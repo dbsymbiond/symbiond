@@ -38,3 +38,16 @@ services:
       TILESERVER_CONFIG_FILE: /data/config.json
     depends_on:
       - symbiond-backend
+  symbiond-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    env_file:
+      - .env
+    depends_on:
+      - symbiond-backend
