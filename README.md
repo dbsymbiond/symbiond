@@ -48,11 +48,7 @@ docker-compose up -d --build
 
 2.  **Start the frontend app:**
 
-- From the `frontend` directory of the project run:
-
-```bash
-npm start
-```
+- Navigate to localhost:3001 in your browser
 
 3.  **Getting Backend Server Logs**
 
